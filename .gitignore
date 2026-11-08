@@ -1,0 +1,27 @@
+# Python Virtual Environment
+venv/
+env/
+ENV/
+.venv/
+
+# Environment variables & API keys (CRITICAL: Do NOT expose Gemini API key)
+.env
+*.env
+
+# VS Code & Editor files
+.vscode/
+.idea/
+
+# Python Cache & Bytecode
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.pytest_cache/
+
+# OS specific files
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+.DS_Store
