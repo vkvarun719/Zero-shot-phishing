@@ -1,0 +1,11 @@
+id,content,label,predicted_label,reason
+96,https://lintasbabel.com/OR/Sites/index.html,1,1,The URL uses a compromised legitimate domain to host a suspicious phishing kit directory structure.
+16,https://olf.virogem.best/,1,1,The URL utilizes a suspicious high-risk top-level domain (.best) combined with an obscure subdomain commonly associated with phishing campaigns.
+31,https://free-verified-badge.github.io/23/help.html,1,1,The URL uses social engineering tactics promising a free verified badge hosted on GitHub Pages to lure users into a credential harvesting scam.
+159,https://www.marychapincarpenter.com/,0,0,The URL belongs to the official website of singer-songwriter Mary Chapin Carpenter and displays no malicious or phishing indicators.
+129,https://www.learngala.com/cases/redlining-ypsilanti/3,0,0,"The URL belongs to Learn Gala, a legitimate educational platform hosting case studies, and shows no indicators of phishing."
+116,https://news.yahoo.co.jp/articles/e510afcb39b60e609b6cc4f20d2902232161cf69,0,0,The URL belongs to the legitimate Yahoo! Japan News website and shows no indicators of a phishing attempt.
+70,https://roifroikazehoi-9431.vercel.app/mixcc.html/,1,1,"The URL uses a random, obfuscated subdomain on a free hosting platform (Vercel) to host a suspicious page, a common pattern in phishing attacks."
+187,https://en.wikipedia.org/wiki/PAGASA,0,0,The URL belongs to the legitimate domain wikipedia.org and leads to an authentic informational article.
+178,https://app.tradervue.com/dashboard,0,0,"The URL belongs to the official and legitimate domain of Tradervue, a recognized trading journal platform."
+57,https://tolomeoroark92658-proiect56893-demoji20356.pages.dev/help/contact/621841975630222,1,1,"The URL uses a randomized Cloudflare Pages subdomain mimicking a legitimate help/contact support page, which is a strong indicator of a phishing attempt."
