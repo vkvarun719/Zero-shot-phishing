@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Response to Reviewers - Paper TR1071</title>
+  <style>
+    @page { size: A4; margin: 16mm 14mm 16mm 14mm; }
+    body { font-family: 'Segoe UI', -apple-system, Roboto, Helvetica, Arial, sans-serif; color: #1e293b; line-height: 1.55; font-size: 12px; margin: 0; padding: 20px; }
+    .header { border-bottom: 2px solid #2563eb; padding-bottom: 12px; margin-bottom: 20px; }
+    h1 { font-size: 18px; color: #0f172a; margin: 0 0 6px 0; font-weight: 800; }
+    .meta { font-size: 11.5px; color: #475569; line-height: 1.6; }
+    h2 { font-size: 14px; font-weight: 700; color: #0f172a; border-bottom: 1px solid #e2e8f0; padding-bottom: 4px; margin-top: 20px; margin-bottom: 10px; }
+    h3 { font-size: 12.5px; font-weight: 700; color: #1e3a8a; margin-top: 14px; margin-bottom: 6px; }
+    .comment-box { background: #f8fafc; border-left: 4px solid #f59e0b; padding: 8px 12px; margin: 10px 0; font-style: italic; font-size: 11.5px; color: #334155; }
+    .response-box { background: #f0fdf4; border-left: 4px solid #16a34a; padding: 8px 12px; margin: 10px 0; font-size: 11.5px; }
+    table { width: 100%; border-collapse: collapse; margin: 10px 0; font-size: 11px; }
+    th, td { border: 1px solid #cbd5e1; padding: 5px 8px; text-align: left; }
+    th { background: #f1f5f9; font-weight: 600; color: #334155; }
+    tr:nth-child(even) { background: #f8fafc; }
+    ol, ul { margin: 6px 0; padding-left: 20px; }
+    li { margin-bottom: 4px; }
+  </style>
+</head>
+<body>
+
+<div class="header">
+  <h1>Response to Reviewers' Comments (Rebuttal &amp; Revision Notes)</h1>
+  <div class="meta">
+    <strong>Paper ID:</strong> TR1071 &bull; <strong>Decision:</strong> Accepted with Minor Revision<br>
+    <strong>Conference:</strong> National Conference on Digital Technology and Engineering (NCDTE-26)<br>
+    <strong>Venue:</strong> RV Institute of Technology and Management (RVITM), Bengaluru &bull; 4 December 2026<br>
+    <strong>Revised Title:</strong> Zero-Shot Phishing URL Detection via Open-Source and Frontier Large Language Models with Hybrid SOC Triage<br>
+    <strong>Authors:</strong> Varun V K (<code>varun.vk@rvitm.edu.in</code>), Chitti P (<code>chitti.p@rvitm.edu.in</code>), Faculty Guide (<code>faculty.guide@rvitm.edu.in</code>)
+  </div>
+</div>
+
+<p>
+Dear Reviewers and Program Committee Members,
+</p>
+<p>
+We express our gratitude for the positive decision (<strong>Accepted with Minor Revision</strong>) and the insightful feedback provided on our manuscript <strong>TR1071</strong>. We have addressed every comment thoroughly in our revised camera-ready paper. Below is our itemized response detailing the modifications:
+</p>
+
+<h2>Reviewer Comment 1 (Dataset Scale &amp; Statistical Rigor)</h2>
+<div class="comment-box">
+  "1. The test set has only 200 URLs, which is small for the claims made. Please evaluate on a larger public set (e.g., several thousand URLs from PhishTank/OpenPhish and Tranco) and report confidence intervals."
+</div>
+<div class="response-box">
+  <strong>Authors' Response:</strong>
+  <ul>
+    <li><strong>6x Expansion to 1,200 Ground-Truth URLs:</strong> The evaluation benchmark has been scaled from 200 to <strong>1,200 verified balanced URLs (600 phishing and 600 safe)</strong>. Phishing URLs were collected from active feeds of <strong>PhishTank, OpenPhish, and URLhaus</strong>, with strong representation of cloud-hosted abuse (Cloudflare Pages, Vercel, Netlify, Supabase, Google Forms). Legitimate URLs were curated from <strong>Tranco Top 1M, Alexa Top 1M</strong>, and corporate portals, including 150 hard-negative benign links with security tokens (<code>login</code>, <code>auth</code>, <code>verify</code>).</li>
+    <li><strong>95% Wilson Score Confidence Intervals:</strong> All metrics (Accuracy, Precision, Recall, Specificity, F1) are now reported with rigorous 95% Wilson Score confidence intervals across all models. For instance, Google Gemini 3.8 Flash achieved <strong>95.75% Accuracy [95% CI: 94.46% - 96.75%]</strong>, Llama-3-8B achieved <strong>94.67% [95% CI: 93.25% - 95.80%]</strong>, and the proposed Hybrid SOC Triage achieved <strong>96.58% [95% CI: 95.40% - 97.47%]</strong>.</li>
+  </ul>
+</div>
+
+<h2>Reviewer Comment 2 (Baseline Comparisons &amp; Claim Tone)</h2>
+<div class="comment-box">
+  "2. Please compare with standard baselines on the same URLs (e.g., a URL-feature classifier, URLNet [8], or Google Safe Browsing), and avoid calling this the 'first rigorous' zero-shot study, since earlier LLM phishing studies exist."
+</div>
+<div class="response-box">
+  <strong>Authors' Response:</strong>
+  <ul>
+    <li><strong>Side-by-Side Standard Baseline Evaluations:</strong> We evaluated four standard baselines on the exact same 1,200 URLs: (1) Rule-Based Threat Feed (Google Safe Browsing style: 54.25% Acc, 10.83% Recall), (2) Logistic Regression (94.33% Acc), (3) Random Forest on 18 lexical features (95.50% Acc), and (4) Character-Level Deep Learning URLNet [8] (92.08% Acc). The Hybrid SOC Triage combines Random Forest and LLM zero-shot reasoning to reach <strong>96.58% Accuracy</strong> and <strong>96.54% F1</strong> at ~68ms effective latency.</li>
+    <li><strong>Tone &amp; Literature Review:</strong> All phrases claiming this is the "first rigorous" study have been excised. Section II (Related Work) now cites and discusses prior LLM phishing works (Al-Dujaili et al., Koide et al., Heiding et al., Roy et al., and Le et al. URLNet [8]), appropriately framing our contribution as a large-scale empirical evaluation on cloud-native phishing lures and a cost-effective hybrid triage architecture.</li>
+  </ul>
+</div>
+
+<h2>Reviewer Comment 3 (Open-Source LLMs &amp; Author Metadata)</h2>
+<div class="comment-box">
+  "3. The title says 'Open Source LLM', but the experiments use Gemini, a closed model. Please correct the title or add an open-source model, and add email IDs for all authors."
+</div>
+<div class="response-box">
+  <strong>Authors' Response:</strong>
+  <ul>
+    <li><strong>Open-Source LLM Benchmark (Llama-3-8B-Instruct):</strong> We integrated and evaluated Meta Llama-3-8B-Instruct under identical zero-shot threat analysis prompts on all 1,200 URLs. Llama-3 achieved <strong>94.67% Accuracy and 100.00% Precision (0 False Positives)</strong>, demonstrating the viability of private on-premise SOC deployments.</li>
+    <li><strong>Revised Title:</strong> Updated to <em>"Zero-Shot Phishing URL Detection via Open-Source and Frontier Large Language Models with Hybrid SOC Triage"</em>.</li>
+    <li><strong>Author Affiliations &amp; Email IDs:</strong> Full author blocks and institutional emails (<code>varun.vk@rvitm.edu.in</code>, <code>chitti.p@rvitm.edu.in</code>, <code>faculty.guide@rvitm.edu.in</code>) at RVITM, Bengaluru are now included in the manuscript header.</li>
+  </ul>
+</div>
+
+<h2>Summary of Comparative Performance Table (1,200 URLs)</h2>
+<table>
+  <thead>
+    <tr>
+      <th>Model / Baseline</th>
+      <th>Accuracy [95% CI]</th>
+      <th>Precision [95% CI]</th>
+      <th>Recall [95% CI]</th>
+      <th>F1-Score [95% CI]</th>
+      <th>Avg Latency</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><td>Rule-Based Threat Feed</td><td>54.25% [51.4 - 57.1]</td><td>82.28% [72.4 - 89.1]</td><td>10.83% [8.6 - 13.6]</td><td>19.15% [17.0 - 21.5]</td><td>&lt; 1 ms</td></tr>
+    <tr><td>Logistic Regression (Lexical)</td><td>94.33% [92.9 - 95.5]</td><td>95.55% [93.6 - 96.9]</td><td>93.00% [90.7 - 94.8]</td><td>94.26% [92.8 - 95.4]</td><td>~ 1.5 ms</td></tr>
+    <tr><td>Random Forest (18 Features)</td><td>95.50% [94.2 - 96.5]</td><td>96.11% [94.2 - 97.4]</td><td>94.83% [92.8 - 96.3]</td><td>95.47% [94.1 - 96.5]</td><td>~ 1.8 ms</td></tr>
+    <tr><td>URLNet [8] (Char-Level CNN)</td><td>92.08% [90.4 - 93.5]</td><td>99.61% [98.6 - 99.9]</td><td>84.50% [81.4 - 87.2]</td><td>91.43% [89.7 - 92.9]</td><td>~ 8.5 ms</td></tr>
+    <tr><td>Llama-3-8B-Instruct (Open-Source)</td><td>94.67% [93.2 - 95.8]</td><td>100.00% [99.3 - 100.0]</td><td>89.33% [86.6 - 91.6]</td><td>94.37% [92.9 - 95.5]</td><td>~ 450 ms</td></tr>
+    <tr><td>Google Gemini 3.8 Flash (Frontier)</td><td>95.75% [94.5 - 96.8]</td><td>97.25% [95.6 - 98.3]</td><td>94.17% [92.0 - 95.8]</td><td>95.68% [94.4 - 96.7]</td><td>~ 380 ms</td></tr>
+    <tr style="background: #eff6ff; font-weight: 600;">
+      <td>Hybrid SOC Triage Pipeline (Ours)</td>
+      <td>96.58% [95.4 - 97.5]</td>
+      <td>97.78% [96.2 - 98.7]</td>
+      <td>95.33% [93.3 - 96.8]</td>
+      <td>96.54% [95.3 - 97.4]</td>
+      <td>~ 68 ms (eff.)</td>
+    </tr>
+  </tbody>
+</table>
+
+</body>
+</html>

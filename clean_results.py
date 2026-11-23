@@ -1,8 +1,10 @@
+import os
 import pandas as pd
 
 def clean_evaluation_results():
-    input_path = "evaluated_results.csv"
-    output_path = "clean_evaluated_results.csv"
+    script_dir = os.path.dirname(os.path.abspath(__file__))
+    input_path = os.path.join(script_dir, "evaluated_results.csv")
+    output_path = os.path.join(script_dir, "clean_evaluated_results.csv")
     
     try:
         # Load the evaluated results
