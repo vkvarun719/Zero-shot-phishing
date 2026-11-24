@@ -1,0 +1,61 @@
+{
+  "dataset_size": 1500,
+  "phishing_count": 750,
+  "benign_count": 750,
+  "evaluation_note": "RF on full 1500-URL corpus 5-fold OOF. Mistral on 200-URL sample.",
+  "models": [
+    {
+      "model": "Random Forest URL-Feature Classifier (5-fold OOF)",
+      "n": 1500,
+      "accuracy": 0.9727,
+      "accuracy_ci": [
+        0.9631,
+        0.9798
+      ],
+      "precision": 0.9695,
+      "precision_ci": [
+        0.9547,
+        0.9796
+      ],
+      "recall": 0.976,
+      "recall_ci": [
+        0.9624,
+        0.9848
+      ],
+      "f1": 0.9727,
+      "tp": 732,
+      "tn": 727,
+      "fp": 23,
+      "fn": 18,
+      "cv_f1_mean": 0.9728,
+      "cv_f1_std": 0.0063,
+      "cv_acc_mean": 0.9727,
+      "cv_pre_mean": 0.9697,
+      "cv_rec_mean": 0.976
+    },
+    {
+      "model": "Mistral-7B (Open-Source, Zero-Shot)",
+      "n": 201,
+      "accuracy": 0.8259,
+      "accuracy_ci": [
+        0.7675,
+        0.8721
+      ],
+      "precision": 0.7826,
+      "precision_ci": [
+        0.6988,
+        0.8482
+      ],
+      "recall": 0.9,
+      "recall_ci": [
+        0.8256,
+        0.9448
+      ],
+      "f1": 0.8372,
+      "tp": 90,
+      "tn": 76,
+      "fp": 25,
+      "fn": 10
+    }
+  ]
+}
