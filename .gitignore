@@ -4,9 +4,10 @@ env/
 ENV/
 .venv/
 
-# Environment variables & API keys (CRITICAL: Do NOT expose Gemini API key)
+# Environment variables & API keys — NEVER commit secrets
 .env
 *.env
+.env.*
 
 # VS Code & Editor files
 .vscode/
@@ -25,3 +26,15 @@ ehthumbs.db
 Desktop.ini
 $RECYCLE.BIN/
 .DS_Store
+
+# Large dataset files (re-generate with fetch_extended_dataset.py)
+phishing_dataset_large.csv
+
+# Intermediate / scratch evaluation output (committed only when finalised)
+# evaluated_results.csv   ← kept intentionally for reproducibility
+
+# Jupyter notebook checkpoints
+.ipynb_checkpoints/
+
+# Node / npm (if any tooling)
+node_modules/
