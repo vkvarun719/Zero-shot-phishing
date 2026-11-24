@@ -220,12 +220,14 @@ def evaluate_gemini(client, model_name: str, url: str, max_retries: int = 5) -> 
     prompt = (
         f"{SYSTEM_PROMPT}\n\nContent to analyse:\n\"\"\"{url}\"\"\""
     )
+    model = genai.GenerativeModel(model_name)
     for attempt in range(max_retries):
         try:
-            response = client.models.generate_content(
-                model=model_name,
-                contents=prompt,
-                config=types.GenerateContentConfig(response_mime_type="application/json"),
+            response = model.generate_content(
+                prompt,
+                generation_config=genai.types.GenerationConfig(
+                    response_mime_type="application/json"
+                ),
             )
             return _parse_json_response(response.text or "")
         except Exception as e:
@@ -346,7 +348,9 @@ def main():
     # ── 3. LLM zero-shot evaluation ─────────────────────────────────────────
     print("\n[Step 3/3] Zero-shot LLM evaluation (Mistral + Gemini) ...")
 
-    gemini_client  = genai.Client(api_key=gemini_key) if gemini_key else None
+    if gemini_key:
+        genai.configure(api_key=gemini_key)
+    gemini_key_valid = bool(gemini_key)
     current_gemini = GEMINI_PRIMARY
 
     # Resume support
@@ -371,10 +375,10 @@ def main():
 
         # Gemini (closed)
         g_pred, g_reason = -1, ""
-        if gemini_client:
+        if gemini_key_valid:
             while g_pred == -1:
                 try:
-                    g_pred, g_reason = evaluate_gemini(gemini_client, current_gemini, url)
+                    g_pred, g_reason = evaluate_gemini(None, current_gemini, url)
                 except DailyQuotaExhaustedException:
                     if current_gemini == GEMINI_PRIMARY:
                         print(f"\n[FAILOVER] Switching to {GEMINI_FALLBACK}")

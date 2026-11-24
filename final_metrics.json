@@ -1,0 +1,59 @@
+{
+  "dataset_size": 200,
+  "phishing_count": 100,
+  "benign_count": 100,
+  "evaluation_note": "Mistral-7B evaluated zero-shot via Ollama. Gemini metrics not available (API key not set during run).",
+  "models": [
+    {
+      "model": "Random Forest URL-Feature Classifier (5-fold OOF)",
+      "n": 200,
+      "accuracy": 0.83,
+      "accuracy_ci": [
+        0.7718,
+        0.8757
+      ],
+      "precision": 0.8173,
+      "precision_ci": [
+        0.7322,
+        0.8798
+      ],
+      "recall": 0.85,
+      "recall_ci": [
+        0.7672,
+        0.9069
+      ],
+      "f1": 0.8333,
+      "tp": 85,
+      "tn": 81,
+      "fp": 19,
+      "fn": 15,
+      "cv_f1_mean": 0.833,
+      "cv_f1_std": 0.029,
+      "cv_acc_mean": 0.83
+    },
+    {
+      "model": "Mistral-7B (Open-Source, Zero-Shot)",
+      "n": 201,
+      "accuracy": 0.8259,
+      "accuracy_ci": [
+        0.7675,
+        0.8721
+      ],
+      "precision": 0.7826,
+      "precision_ci": [
+        0.6988,
+        0.8482
+      ],
+      "recall": 0.9,
+      "recall_ci": [
+        0.8256,
+        0.9448
+      ],
+      "f1": 0.8372,
+      "tp": 90,
+      "tn": 76,
+      "fp": 25,
+      "fn": 10
+    }
+  ]
+}
